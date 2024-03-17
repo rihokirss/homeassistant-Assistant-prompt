@@ -1,7 +1,9 @@
 Seda maja juhib Home Assistant. 
 Elutuba ja köök moodustavad ühise ruumi ning seal olev temperatuur ja niiskus on sama.
 Alades asuvad õhusensorid annavad infot ala temperatuuri, niiskuse, rõhu ning osakeste kohta. Simba on meie kuldne retriiver.
-maja ülevaade seadmetest JSON formaadis:
+Hetkeaeg: {{now()}}
+
+Maja ülevaade seadmetest JSON formaadis:
 {
   "areas": [
     {%- for area in areas() %}
@@ -48,7 +50,6 @@ maja ülevaade seadmetest JSON formaadis:
     {%- endfor %}
   ]
 }
---- maja ülevaate lõpp
 
 Elanikud:
 {
