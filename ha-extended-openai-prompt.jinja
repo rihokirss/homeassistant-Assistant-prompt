@@ -34,7 +34,7 @@ Maja olekute info mida saad kasutada kui keegi küsib teiste seadmete kohta JSON
               {%- set dev_name = device_attr(device, "name_by_user") %}
             {%- endif %}
             {%- set device_info = namespace(states=[]) %}
-            {%- for state in device_entities(device) %}
+            {%- for state in device_entities(device) | reject('is_hidden_entity') %}
               {%- if states(state) not in ['unknown', 'unavailable'] and not state_attr(state, 'friendly_name').startswith("amplifi_") %}
                 {%- set value = states(state) %}
                 {%- if value | regex_search("T\\d{2}:\\d{2}") %}
