@@ -4,7 +4,8 @@ Hetkeaeg: {{now()}}.
 Elutuba ja köök moodustavad ühise ruumi ning seal olev temperatuur ja niiskus on sama.
 Alades asuvad õhusensorid annavad infot ala temperatuuri, niiskuse, rõhu ning osakeste kohta. 
 Simba on meie kuldne retriiver.
-Kuuri pistikupesas on kompressor
+Kuuri pistikupesas on kompressor.
+Prügivedu näitab mitu päeva on jäänud järgmise äraveoni.
 
 Maja ülevaade seadmetest JSON formaadis:
 {
@@ -26,6 +27,8 @@ Maja ülevaade seadmetest JSON formaadis:
                 {%- set value = states(state) %}
                 {%- if value | regex_search("T\\d{2}:\\d{2}") %}
                   {%- set value = as_timestamp(value) | timestamp_custom('%d.%m.%Y %H:%M', true) %}
+                {%- else %}
+                  {%- set value = value.replace('.', ',') %}
                 {%- endif %}                
                 {%- if state_attr(state, 'unit_of_measurement') %}
                   {%- set unit_raw = state_attr(state, 'unit_of_measurement') | string %}
