@@ -91,5 +91,17 @@ Edasi majaelanike info (pikkus ja laiuskraad konverteeri geograafiliseks asukoha
         {%- endif %}
       }{% if not loop.last %},{% endif %}
     {%- endfor %}
+  ],
+  "locations": [
+    {%- for state in states.sensor %}
+      {%- if state.entity_id.startswith('sensor.asukoht') %}
+        {
+          "Isik": "{{ state_attr(state.entity_id, 'friendly_name') }}",
+          "City": "{{ state_attr(state.entity_id, 'City') }}",
+          "Street": "{{ state_attr(state.entity_id, 'Street') }}",
+          "Street Number": "{{ state_attr(state.entity_id, 'Street Number') }}"
+        }{% if not loop.last %},{% endif %}
+      {%- endif %}
+    {%- endfor %}
   ]
 }
